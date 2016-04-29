@@ -30,15 +30,10 @@ class LogStash::Inputs::S3Fog < LogStash::Inputs::Base
   config :bucket, :validate => :string, :required => true
 
   # The AWS region for your bucket.
-  config :region, :validate => ["us-east-1", "us-west-1", "us-west-2",
-                                "eu-west-1", "ap-southeast-1", "ap-southeast-2",
-                                "ap-northeast-1", "sa-east-1", "us-gov-west-1"],
-                                :deprecated => "'region' has been deprecated in favor of 'region_endpoint'"
+  config :region, :validate => :string
 
   # The AWS region for your bucket.
-  config :region_endpoint, :validate => ["us-east-1", "us-west-1", "us-west-2",
-                                "eu-west-1", "ap-southeast-1", "ap-southeast-2",
-                                "ap-northeast-1", "sa-east-1", "us-gov-west-1"], :default => "us-east-1"
+  config :region_endpoint, :validate => :string
 
   # If specified, the prefix the filenames in the bucket must match (not a regexp)
   config :prefix, :validate => :string, :default => nil
@@ -50,10 +45,7 @@ class LogStash::Inputs::S3Fog < LogStash::Inputs::Base
 
   # Name of an S3 bucket to backup processed files to.
   config :backup_to_bucket, :validate => :string, :required => false
-  config :backup_endpoint, :validate => ["us-east-1", "us-west-1", "us-west-2",
-                                         "eu-west-1", "ap-southeast-1", "ap-southeast-2",
-                                         "ap-northeast-1", "sa-east-1", "us-gov-west-1"],
-                                         :required => false
+  config :backup_endpoint, :validate => :string, :required => false
 
   # Path of a local directory to backup processed files to.
   config :backup_to_dir, :validate => :string, :default => nil
